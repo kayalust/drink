@@ -10,5 +10,6 @@ import java.lang.annotation.Target;
 public @interface Require {
 
     String value();
+    String permission() default "&cYou do not have permission to perform this command.";;
 
 }

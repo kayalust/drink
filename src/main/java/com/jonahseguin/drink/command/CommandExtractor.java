@@ -47,16 +47,20 @@ public class CommandExtractor {
             }
             Command command = method.getAnnotation(Command.class);
             String perm = "";
+            String permMessage = "";
             if (method.isAnnotationPresent(Require.class)) {
                 Require require = method.getAnnotation(Require.class);
                 perm = require.value();
+                permMessage = require.permission();
             } else if (method.getDeclaringClass().isAnnotationPresent(Require.class)) {
                 Require require = method.getDeclaringClass().getAnnotation(Require.class);
                 perm = require.value() + (command.name().isEmpty() ? "" : ".") + command.name();
+                permMessage = require.permission();
             }
+
             DrinkCommand drinkCommand = new DrinkCommand(
                     commandService, command.name(), Sets.newHashSet(command.aliases()), command.desc(), command.usage(),
-                    perm, handler, method
+                    perm, permMessage, handler, method
             );
             return Optional.of(drinkCommand);
         }
