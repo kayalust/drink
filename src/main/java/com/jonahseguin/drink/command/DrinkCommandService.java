@@ -91,16 +91,8 @@ public class DrinkCommandService implements CommandService {
     }
 
     @Override
-    public void setAuthorizer(@Nonnull DrinkAuthorizer authorizer) {
-        Preconditions.checkNotNull(authorizer, "Authorizer cannot be null");
-        this.authorizer = authorizer;
-    }
-
-    @Override
     public void registerCommands() {
-        commands.values().forEach(cmd -> {
-            spigotRegistry.register(cmd, cmd.isOverrideExistingCommands());
-        });
+        commands.values().forEach(cmd -> spigotRegistry.register(cmd, cmd.isOverrideExistingCommands()));
     }
 
     @Override

@@ -18,5 +18,4 @@ public class DrinkAuthorizer {
         }
         return true;
     }
-
 }

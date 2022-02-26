@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Target({ElementType.METHOD, ElementType.TYPE})
 public @interface Require {
 
-    String value();
-    String permission() default "&cYou do not have permission to perform this command.";;
+    String permission();
+    String message() default "&cYou do not have permission to perform this command.";
 
 }
